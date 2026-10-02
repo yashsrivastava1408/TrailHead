@@ -1,0 +1,291 @@
+{
+  "javascript": {
+    "label": "JavaScript",
+    "aliases": [
+      "javascript",
+      "js",
+      "es6",
+      "node.js"
+    ]
+  },
+  "typescript": {
+    "label": "TypeScript",
+    "aliases": [
+      "typescript",
+      "ts"
+    ]
+  },
+  "react": {
+    "label": "React",
+    "aliases": [
+      "react",
+      "reactjs",
+      "react.js",
+      "next.js",
+      "nextjs",
+      "redux"
+    ]
+  },
+  "html-css": {
+    "label": "HTML/CSS",
+    "aliases": [
+      "html",
+      "css",
+      "scss",
+      "tailwind",
+      "bootstrap"
+    ]
+  },
+  "nodejs": {
+    "label": "Node.js",
+    "aliases": [
+      "node",
+      "nodejs",
+      "node.js",
+      "npm"
+    ]
+  },
+  "express": {
+    "label": "Express",
+    "aliases": [
+      "express",
+      "expressjs",
+      "express.js",
+      "nestjs"
+    ]
+  },
+  "rest-api": {
+    "label": "REST APIs",
+    "aliases": [
+      "rest",
+      "restful",
+      "rest api",
+      "graphql",
+      "openapi",
+      "swagger"
+    ]
+  },
+  "python": {
+    "label": "Python",
+    "aliases": [
+      "python",
+      "django",
+      "flask",
+      "fastapi"
+    ]
+  },
+  "java": {
+    "label": "Java",
+    "aliases": [
+      "java",
+      "spring",
+      "spring boot",
+      "springboot"
+    ]
+  },
+  "sql": {
+    "label": "SQL",
+    "aliases": [
+      "sql",
+      "mysql",
+      "sqlite",
+      "postgres",
+      "postgresql",
+      "mariadb"
+    ]
+  },
+  "mongodb": {
+    "label": "MongoDB",
+    "aliases": [
+      "mongodb",
+      "mongo",
+      "mongoose"
+    ]
+  },
+  "git": {
+    "label": "Git",
+    "aliases": [
+      "git",
+      "github",
+      "gitlab"
+    ]
+  },
+  "testing": {
+    "label": "Testing",
+    "aliases": [
+      "jest",
+      "mocha",
+      "pytest",
+      "junit",
+      "unit test",
+      "unit tests",
+      "testing",
+      "vitest",
+      "cypress",
+      "playwright",
+      "selenium"
+    ]
+  },
+  "test-automation": {
+    "label": "Test automation",
+    "aliases": [
+      "selenium",
+      "playwright",
+      "cypress",
+      "appium",
+      "testng",
+      "robot framework",
+      "postman"
+    ]
+  },
+  "ci-cd": {
+    "label": "CI/CD",
+    "aliases": [
+      "ci/cd",
+      "github actions",
+      "jenkins",
+      "gitlab ci",
+      "circleci"
+    ]
+  },
+  "docker": {
+    "label": "Docker",
+    "aliases": [
+      "docker",
+      "dockerfile",
+      "docker-compose",
+      "container",
+      "containers"
+    ]
+  },
+  "kubernetes": {
+    "label": "Kubernetes",
+    "aliases": [
+      "kubernetes",
+      "k8s",
+      "helm"
+    ]
+  },
+  "cloud": {
+    "label": "Cloud (AWS/GCP/Azure)",
+    "aliases": [
+      "aws",
+      "gcp",
+      "azure",
+      "ec2",
+      "s3",
+      "lambda",
+      "cloud",
+      "vercel",
+      "heroku",
+      "netlify"
+    ]
+  },
+  "linux": {
+    "label": "Linux & shell",
+    "aliases": [
+      "linux",
+      "bash",
+      "shell",
+      "ubuntu",
+      "zsh"
+    ]
+  },
+  "iac": {
+    "label": "Infrastructure as code",
+    "aliases": [
+      "terraform",
+      "ansible",
+      "cloudformation",
+      "pulumi"
+    ]
+  },
+  "pandas": {
+    "label": "Data wrangling (pandas)",
+    "aliases": [
+      "pandas",
+      "numpy",
+      "dataframe",
+      "excel",
+      "data cleaning"
+    ]
+  },
+  "data-viz": {
+    "label": "Data visualisation",
+    "aliases": [
+      "matplotlib",
+      "seaborn",
+      "power bi",
+      "powerbi",
+      "tableau",
+      "plotly",
+      "dashboard",
+      "d3"
+    ]
+  },
+  "ml": {
+    "label": "Machine learning",
+    "aliases": [
+      "machine learning",
+      "scikit-learn",
+      "sklearn",
+      "tensorflow",
+      "pytorch",
+      "keras",
+      "neural network",
+      "deep learning",
+      "ml"
+    ]
+  },
+  "llm": {
+    "label": "LLM apps",
+    "aliases": [
+      "llm",
+      "langchain",
+      "langgraph",
+      "openai",
+      "rag",
+      "gpt",
+      "chatbot",
+      "embeddings",
+      "ollama",
+      "llama"
+    ]
+  },
+  "dsa": {
+    "label": "Data structures & algorithms",
+    "aliases": [
+      "dsa",
+      "leetcode",
+      "algorithms",
+      "data structures",
+      "competitive programming",
+      "codeforces",
+      "codechef"
+    ]
+  },
+  "cpp": {
+    "label": "C/C++",
+    "aliases": [
+      "c++",
+      "cpp"
+    ]
+  },
+  "debugging": {
+    "label": "Debugging & issue triage",
+    "aliases": [
+      "debugging",
+      "troubleshooting",
+      "bug fix",
+      "bugfix"
+    ]
+  },
+  "docs": {
+    "label": "Technical writing",
+    "aliases": [
+      "documentation",
+      "technical writing",
+      "readme"
+    ]
+  }
+}

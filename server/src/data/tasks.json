@@ -1,0 +1,50 @@
+[
+  {
+    "pathId": "fullstack", "title": "Fix the broken counter component", "minutes": 20,
+    "brief": "This React component should increase the count on click and show the count in the title, but it is buggy. Find the bugs and paste your fixed version. Add one sentence on how you would test it.",
+    "starter": "function Counter() {\n  let count = 0;\n  return (\n    <div>\n      <h1>Count: {count}</h1>\n      <button onClick={count++}>Add</button>\n    </div>\n  );\n}",
+    "rubric": ["Uses useState", "Passes a function to onClick instead of calling it", "Mentions a test or manual check"]
+  },
+  {
+    "pathId": "backend", "title": "Design a small REST endpoint", "minutes": 20,
+    "brief": "Design POST /orders for a shop. List the JSON body, validation rules, status codes for success and for three kinds of failure, and the SQL table you would store it in.",
+    "starter": "",
+    "rubric": ["Sensible body fields", "Validation rules and 400/404/409 style codes", "A reasonable table with a primary key and types", "Mentions idempotency, auth or indexes"]
+  },
+  {
+    "pathId": "qa-sdet", "title": "Break the login form", "minutes": 20,
+    "brief": "A login form has an email field, a password field (8-20 characters) and a Login button. Write 10 test cases (not only happy path) and say which two you would automate first and why.",
+    "starter": "",
+    "rubric": ["At least 8 distinct cases", "Includes edge cases such as empty, boundary length, special characters, injection or whitespace", "Chooses automation candidates with a reason"]
+  },
+  {
+    "pathId": "data-analyst", "title": "Answer a business question with SQL", "minutes": 20,
+    "brief": "Tables: orders(id, customer_id, amount, created_at) and customers(id, city). Write one SQL query for: total revenue per city for the last 30 days, highest first, only cities above 10000. Explain what you would chart.",
+    "starter": "",
+    "rubric": ["Correct JOIN", "GROUP BY with HAVING and ORDER BY DESC", "Date filter on created_at", "Suggests a suitable chart"]
+  },
+  {
+    "pathId": "devops-cloud", "title": "Write a pipeline and a Dockerfile", "minutes": 25,
+    "brief": "For a Node.js app (npm test, npm start on port 3000) write a Dockerfile and a GitHub Actions workflow that runs tests on every push. Briefly say how you would deploy it.",
+    "starter": "",
+    "rubric": ["Reasonable Dockerfile (base image, install, copy, expose, cmd)", "Valid workflow with checkout, setup-node, npm ci, npm test", "A sensible deploy idea"]
+  },
+  {
+    "pathId": "ai-apps", "title": "Plan a small RAG assistant", "minutes": 20,
+    "brief": "A college wants a chatbot that answers only from its 200-page rules PDF. Describe the pipeline step by step (chunking, embeddings, retrieval, prompt) and how you would stop made-up answers.",
+    "starter": "",
+    "rubric": ["Chunking and embeddings explained", "Retrieval then answer with sources", "A way to reduce hallucination (refuse when unsure, citations, evaluation)"]
+  },
+  {
+    "pathId": "support-solutions", "title": "Help an angry customer", "minutes": 15,
+    "brief": "A customer writes: 'Your API returns 401 since this morning and my shop is down!'. Write your reply and the 5 things you would check, in order.",
+    "starter": "",
+    "rubric": ["Calm, clear and empathetic tone", "Logical checks (key changed or expired, header format, environment, recent deploys, logs)", "Says what you will do next and when"]
+  },
+  {
+    "pathId": "product-sde", "title": "Two Sum, explained", "minutes": 20,
+    "brief": "Given an array of numbers and a target, return the indices of two numbers that add to the target. Write the solution in any language, give its time and space complexity, and explain why it is faster than the brute force.",
+    "starter": "",
+    "rubric": ["Hash map one-pass or two-pass solution", "States O(n) time and O(n) space", "Explains the brute force O(n^2) comparison"]
+  }
+]

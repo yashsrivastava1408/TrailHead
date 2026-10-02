@@ -1,0 +1,87 @@
+[
+  {
+    "id": "fullstack",
+    "name": "Web Developer (Full-stack)",
+    "dsaLevel": "medium",
+    "summary": "Build user-facing apps end to end: UI, API and database. Many service and product startups hire for this with project-based interviews.",
+    "skills": [
+      { "id": "javascript", "weight": 3 }, { "id": "react", "weight": 3 }, { "id": "html-css", "weight": 2 },
+      { "id": "nodejs", "weight": 2 }, { "id": "rest-api", "weight": 2 }, { "id": "sql", "weight": 2 },
+      { "id": "git", "weight": 1 }, { "id": "testing", "weight": 1 }, { "id": "cloud", "weight": 1 }
+    ]
+  },
+  {
+    "id": "backend",
+    "name": "Backend Developer",
+    "dsaLevel": "medium",
+    "summary": "Design APIs, databases and services. Interviews mix system thinking with moderate DSA.",
+    "skills": [
+      { "id": "nodejs", "weight": 2 }, { "id": "java", "weight": 2 }, { "id": "python", "weight": 2 },
+      { "id": "rest-api", "weight": 3 }, { "id": "sql", "weight": 3 }, { "id": "mongodb", "weight": 1 },
+      { "id": "docker", "weight": 1 }, { "id": "testing", "weight": 2 }, { "id": "git", "weight": 1 }
+    ]
+  },
+  {
+    "id": "qa-sdet",
+    "name": "QA / SDET",
+    "dsaLevel": "low",
+    "summary": "Break software on purpose and automate the checks. Strong demand, light on DSA, heavy on care and curiosity.",
+    "skills": [
+      { "id": "testing", "weight": 3 }, { "id": "test-automation", "weight": 3 }, { "id": "debugging", "weight": 2 },
+      { "id": "python", "weight": 1 }, { "id": "javascript", "weight": 1 }, { "id": "java", "weight": 1 },
+      { "id": "sql", "weight": 2 }, { "id": "rest-api", "weight": 2 }, { "id": "git", "weight": 1 }, { "id": "ci-cd", "weight": 2 }
+    ]
+  },
+  {
+    "id": "data-analyst",
+    "name": "Data Analyst",
+    "dsaLevel": "low",
+    "summary": "Turn raw data into decisions using SQL, spreadsheets and charts. Interviews are SQL and case based.",
+    "skills": [
+      { "id": "sql", "weight": 4 }, { "id": "pandas", "weight": 3 }, { "id": "python", "weight": 2 },
+      { "id": "data-viz", "weight": 3 }, { "id": "docs", "weight": 1 }
+    ]
+  },
+  {
+    "id": "devops-cloud",
+    "name": "DevOps / Cloud Engineer",
+    "dsaLevel": "low",
+    "summary": "Ship and run software reliably: pipelines, containers and cloud. Light on DSA, heavy on tooling.",
+    "skills": [
+      { "id": "linux", "weight": 3 }, { "id": "docker", "weight": 3 }, { "id": "ci-cd", "weight": 3 },
+      { "id": "cloud", "weight": 3 }, { "id": "kubernetes", "weight": 1 }, { "id": "iac", "weight": 1 },
+      { "id": "git", "weight": 1 }, { "id": "python", "weight": 1 }
+    ]
+  },
+  {
+    "id": "ai-apps",
+    "name": "AI Application Developer",
+    "dsaLevel": "low",
+    "summary": "Build products on top of language models: RAG, agents and APIs. New field, project-led hiring.",
+    "skills": [
+      { "id": "python", "weight": 2 }, { "id": "javascript", "weight": 1 }, { "id": "llm", "weight": 4 },
+      { "id": "rest-api", "weight": 2 }, { "id": "sql", "weight": 1 }, { "id": "docker", "weight": 1 },
+      { "id": "ml", "weight": 1 }, { "id": "git", "weight": 1 }
+    ]
+  },
+  {
+    "id": "support-solutions",
+    "name": "Support / Solutions Engineer",
+    "dsaLevel": "low",
+    "summary": "Help customers get software working: debug, explain and integrate. Good for people who like talking and fixing.",
+    "skills": [
+      { "id": "debugging", "weight": 3 }, { "id": "sql", "weight": 2 }, { "id": "rest-api", "weight": 2 },
+      { "id": "linux", "weight": 1 }, { "id": "docs", "weight": 3 }, { "id": "javascript", "weight": 1 }, { "id": "python", "weight": 1 }
+    ]
+  },
+  {
+    "id": "product-sde",
+    "name": "Product-company SDE (DSA-heavy)",
+    "dsaLevel": "high",
+    "summary": "Big product companies. Several rounds of data structures and algorithms. Included so you can compare honestly.",
+    "skills": [
+      { "id": "dsa", "weight": 5 }, { "id": "cpp", "weight": 2 }, { "id": "java", "weight": 2 },
+      { "id": "python", "weight": 1 }, { "id": "sql", "weight": 1 }, { "id": "git", "weight": 1 }
+    ]
+  }
+]
