@@ -24,7 +24,7 @@ Final-year students are told two things: "start LeetCode" and "pick a role". Man
 1. **Reads your real work.** It studies your public GitHub repos and optional resume text, then builds a profile where *every skill carries evidence*.
 2. **Scores 8 career paths in plain code.** Fit is the share of each path's weighted skills you already show. It is reproducible, so a model can't make the numbers up.
 3. **Explains with a fact-checker.** A language model writes the "why it fits" text, but a checker rejects any claim not backed by your evidence and makes the model retry.
-4. **Lets you try before you pick.** A 20-minute taste test for each top path. The model grades it against a rubric, and you rate how much you enjoyed it.
+4. **Lets you try before you pick.** A quick multiple-choice Taste Test for each top path. The model scores it with perfect accuracy while providing custom educational feedback, and you rate how much you enjoyed it.
 5. **Decides transparently.** `40% fit + 35% trial score + 25% enjoyment`, with the breakdown shown. You can override it.
 6. **Builds a 30-day plan that adapts.** Daily tasks sized to your free time. Miss days, and unfinished tasks slide forward.
 
@@ -194,5 +194,5 @@ Server and client tests use fake GitHub and fake model clients, so they are fast
 ## Limits (read these)
 
 - Fit scores come from **public GitHub evidence and resume keywords**. They suggest, they don't judge a person. Students with few public repos get a "not enough evidence" warning.
-- Taste-test grading is by a language model against a rubric. Treat the score as feedback, not a verdict.
+- Taste-test questions are multiple-choice, ensuring strictly accurate grading, though the model still generates the custom educational feedback explanations.
 - Sessions are anonymous, and the session id in the browser is the only key. Fine for a personal tool; add real auth before a multi-user launch.

@@ -88,8 +88,15 @@ export default function TasteTest() {
 
           <form className="card stack lg" onSubmit={submit}>
             <div>
-              <label htmlFor="answer">{trial ? 'Try again (your new answer replaces the old one)' : 'Your answer'}</label>
-              <textarea id="answer" required minLength={20} value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder="Write or paste your answer here…" />
+              <label>{trial ? 'Try again (your new answer replaces the old one)' : 'Select your answer'}</label>
+              <div className="stack" style={{ marginTop: '14px' }}>
+                {task.options?.map((opt, i) => (
+                  <label key={i} className={`card option ${answer === String(i) ? 'picked' : ''}`} style={{ padding: '16px', display: 'flex', gap: '14px', alignItems: 'flex-start', margin: 0 }}>
+                    <input type="radio" name="mcq_answer" required value={String(i)} checked={answer === String(i)} onChange={(e) => setAnswer(e.target.value)} style={{ width: '20px', height: '20px', accentColor: 'var(--accent)', marginTop: '2px', flexShrink: 0 }} />
+                    <span style={{ fontSize: '15px', lineHeight: '1.5' }}>{opt}</span>
+                  </label>
+                ))}
+              </div>
             </div>
             <div>
               <label>How much did you enjoy this?</label>
@@ -98,7 +105,7 @@ export default function TasteTest() {
               </div>
             </div>
             <div className="row">
-              <button className="btn primary" disabled={busy || answer.trim().length < 20 || !enjoyment}>{busy ? 'Grading…' : 'Submit for grading'}</button>
+              <button className="btn primary" disabled={busy || !answer || !enjoyment}>{busy ? 'Grading…' : 'Submit for grading'}</button>
               {busy && <Spinner label="The model is reading your answer" />}
             </div>
           </form>

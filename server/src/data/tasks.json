@@ -1,50 +1,106 @@
 [
   {
-    "pathId": "fullstack", "title": "Fix the broken counter component", "minutes": 20,
-    "brief": "This React component should increase the count on click and show the count in the title, but it is buggy. Find the bugs and paste your fixed version. Add one sentence on how you would test it.",
+    "pathId": "fullstack", "title": "Fix the broken counter component", "minutes": 5,
+    "brief": "This React component should increase the count on click and show the count in the title, but it is buggy. Which fix is correct?",
     "starter": "function Counter() {\n  let count = 0;\n  return (\n    <div>\n      <h1>Count: {count}</h1>\n      <button onClick={count++}>Add</button>\n    </div>\n  );\n}",
-    "rubric": ["Uses useState", "Passes a function to onClick instead of calling it", "Mentions a test or manual check"]
+    "options": [
+      "Change `let count = 0` to `const [count, setCount] = useState(0)` and `onClick={() => setCount(count + 1)}`",
+      "Change `onClick={count++}` to `onClick={() => count++}`",
+      "Change `let count = 0` to `var count = 0`",
+      "Move `let count = 0` outside the component function"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "React requires `useState` to track state changes and trigger a re-render. A local variable like `let count` will not update the UI when changed."
   },
   {
-    "pathId": "backend", "title": "Design a small REST endpoint", "minutes": 20,
-    "brief": "Design POST /orders for a shop. List the JSON body, validation rules, status codes for success and for three kinds of failure, and the SQL table you would store it in.",
+    "pathId": "backend", "title": "Design a small REST endpoint", "minutes": 5,
+    "brief": "You need to design a `POST /orders` endpoint for an e-commerce shop. Which of the following is the best practice for the response status code upon successful creation?",
     "starter": "",
-    "rubric": ["Sensible body fields", "Validation rules and 400/404/409 style codes", "A reasonable table with a primary key and types", "Mentions idempotency, auth or indexes"]
+    "options": [
+      "200 OK",
+      "201 Created",
+      "204 No Content",
+      "202 Accepted"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The 201 Created status code is the HTTP standard for a successful POST request that results in the creation of a new resource."
   },
   {
-    "pathId": "qa-sdet", "title": "Break the login form", "minutes": 20,
-    "brief": "A login form has an email field, a password field (8-20 characters) and a Login button. Write 10 test cases (not only happy path) and say which two you would automate first and why.",
+    "pathId": "qa-sdet", "title": "Break the login form", "minutes": 5,
+    "brief": "A login form has a password field requiring 8-20 characters. Which of the following test inputs is the best example of 'Boundary Value Analysis'?",
     "starter": "",
-    "rubric": ["At least 8 distinct cases", "Includes edge cases such as empty, boundary length, special characters, injection or whitespace", "Chooses automation candidates with a reason"]
+    "options": [
+      "A password with exactly 12 characters",
+      "A password with special characters like !@#$",
+      "Passwords with exactly 7, 8, 20, and 21 characters",
+      "Leaving the password field completely empty"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Boundary Value Analysis tests the exact boundaries (8 and 20) and the values just outside them (7 and 21) to catch off-by-one errors."
   },
   {
-    "pathId": "data-analyst", "title": "Answer a business question with SQL", "minutes": 20,
-    "brief": "Tables: orders(id, customer_id, amount, created_at) and customers(id, city). Write one SQL query for: total revenue per city for the last 30 days, highest first, only cities above 10000. Explain what you would chart.",
+    "pathId": "data-analyst", "title": "Answer a business question with SQL", "minutes": 5,
+    "brief": "You have an `orders` table with `customer_id` and `amount`. You need to find the total revenue per customer. Which SQL clause must you use?",
     "starter": "",
-    "rubric": ["Correct JOIN", "GROUP BY with HAVING and ORDER BY DESC", "Date filter on created_at", "Suggests a suitable chart"]
+    "options": [
+      "ORDER BY customer_id",
+      "GROUP BY customer_id",
+      "WHERE customer_id = amount",
+      "PARTITION BY amount"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The `GROUP BY` clause is used alongside aggregate functions like `SUM(amount)` to group the result set by one or more columns (e.g., customer_id)."
   },
   {
-    "pathId": "devops-cloud", "title": "Write a pipeline and a Dockerfile", "minutes": 25,
-    "brief": "For a Node.js app (npm test, npm start on port 3000) write a Dockerfile and a GitHub Actions workflow that runs tests on every push. Briefly say how you would deploy it.",
+    "pathId": "devops-cloud", "title": "Write a Dockerfile", "minutes": 5,
+    "brief": "You are writing a Dockerfile for a Node.js app. Which of the following correctly installs the production dependencies?",
     "starter": "",
-    "rubric": ["Reasonable Dockerfile (base image, install, copy, expose, cmd)", "Valid workflow with checkout, setup-node, npm ci, npm test", "A sensible deploy idea"]
+    "options": [
+      "RUN npm install --production",
+      "CMD npm install",
+      "COPY package.json ./ && npm install",
+      "RUN npm ci --only=production"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "`npm ci --only=production` is the best practice for CI and Docker builds because it strictly follows the package-lock.json and skips devDependencies."
   },
   {
-    "pathId": "ai-apps", "title": "Plan a small RAG assistant", "minutes": 20,
-    "brief": "A college wants a chatbot that answers only from its 200-page rules PDF. Describe the pipeline step by step (chunking, embeddings, retrieval, prompt) and how you would stop made-up answers.",
+    "pathId": "ai-apps", "title": "Plan a small RAG assistant", "minutes": 5,
+    "brief": "A college wants a chatbot that answers ONLY from its 200-page rules PDF. To prevent hallucination, what is the most critical step in your RAG pipeline?",
     "starter": "",
-    "rubric": ["Chunking and embeddings explained", "Retrieval then answer with sources", "A way to reduce hallucination (refuse when unsure, citations, evaluation)"]
+    "options": [
+      "Use a larger LLM like GPT-4 instead of a smaller one",
+      "Instruct the LLM in the prompt to 'only use the provided context and say I don't know if the answer is missing'",
+      "Increase the temperature of the LLM to 1.0",
+      "Generate embeddings for the entire 200-page PDF as a single chunk"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Prompt constraints are crucial in RAG. Explicitly telling the model to rely solely on the retrieved context and admit ignorance prevents it from falling back on its training data (hallucinating)."
   },
   {
-    "pathId": "support-solutions", "title": "Help an angry customer", "minutes": 15,
-    "brief": "A customer writes: 'Your API returns 401 since this morning and my shop is down!'. Write your reply and the 5 things you would check, in order.",
+    "pathId": "support-solutions", "title": "Help an angry customer", "minutes": 5,
+    "brief": "A customer writes: 'Your API returns 401 since this morning and my shop is down!'. What is the most likely technical cause of a 401 error?",
     "starter": "",
-    "rubric": ["Calm, clear and empathetic tone", "Logical checks (key changed or expired, header format, environment, recent deploys, logs)", "Says what you will do next and when"]
+    "options": [
+      "The server is completely down and offline",
+      "The customer's API key is missing, expired, or invalid",
+      "The customer is sending invalid JSON in the request body",
+      "The endpoint URL was mistyped (e.g., /apii instead of /api)"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "401 Unauthorized specifically means the request lacks valid authentication credentials. 400 is for invalid JSON, 404 is for mistyped URLs, and 50x is for server downtime."
   },
   {
-    "pathId": "product-sde", "title": "Two Sum, explained", "minutes": 20,
-    "brief": "Given an array of numbers and a target, return the indices of two numbers that add to the target. Write the solution in any language, give its time and space complexity, and explain why it is faster than the brute force.",
+    "pathId": "product-sde", "title": "Two Sum complexity", "minutes": 5,
+    "brief": "Given an array of numbers, the brute force Two Sum solution (nested loops) has a time complexity of O(n^2). By using a Hash Map, you can optimize this. What is the time complexity of the Hash Map solution?",
     "starter": "",
-    "rubric": ["Hash map one-pass or two-pass solution", "States O(n) time and O(n) space", "Explains the brute force O(n^2) comparison"]
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "A Hash Map allows O(1) lookups. By passing through the array once and storing/checking values in the map, the overall time complexity drops to O(n)."
   }
 ]

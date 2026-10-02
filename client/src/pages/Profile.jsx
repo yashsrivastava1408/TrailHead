@@ -87,13 +87,24 @@ function Result({ session }) {
       <Card>
         <h2>Skills we can prove</h2>
         <p className="muted small" style={{ marginTop: 4 }}>Every skill below comes with evidence. If we cannot prove it, we do not claim it.</p>
-        <div className="stack" style={{ marginTop: 14 }}>
+        <div className="grid cols-2" style={{ marginTop: 24, gap: '24px' }}>
           {profile.skills.length === 0 && <span className="muted">No skills detected yet.</span>}
-          {profile.skills.map((s) => (
-            <details key={s.id}>
-              <summary style={{ cursor: 'pointer' }}><Chip tone="good">{s.label}</Chip> <span className="muted small">{s.evidence.length} piece{s.evidence.length > 1 ? 's' : ''} of evidence</span></summary>
-              <ul className="clean small muted" style={{ marginTop: 8 }}>{s.evidence.map((e) => <li key={e}>{e}</li>)}</ul>
-            </details>
+          {profile.skills.map((s, idx) => (
+            <div key={s.id} className="card lift reveal" style={{ '--i': idx, padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px', background: 'rgba(255, 255, 255, 0.02)', borderColor: 'rgba(52, 211, 153, 0.15)' }}>
+              <div className="spread">
+                <Chip tone="good" style={{ fontWeight: 600, padding: '6px 14px', fontSize: '13px', background: 'rgba(52, 211, 153, 0.12)' }}>{s.label}</Chip>
+                <span className="muted small" style={{ fontWeight: 500 }}>{s.evidence.length} piece{s.evidence.length !== 1 ? 's' : ''}</span>
+              </div>
+              <div style={{ height: '1px', background: 'var(--border-strong)', opacity: 0.5 }} />
+              <ul className="clean small" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {s.evidence.map((e, i) => (
+                  <li key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', lineHeight: '1.5', color: 'var(--text-2)' }}>
+                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', marginTop: '7px', flexShrink: 0, opacity: 0.8, boxShadow: '0 0 8px var(--accent)' }} />
+                    <span>{e}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </Card>
