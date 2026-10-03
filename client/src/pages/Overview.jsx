@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CalendarCheck, Compass, FlaskConical, GitBranch, ShieldCheck, Sparkles, Target } from 'lucide-react';
-import { Banner, Bar, Card, Chip, CountUp, PageHead, Ring, Stat } from '../components/ui.jsx';
+import { ArrowRight, CalendarCheck, CheckCircle2, Circle, Compass, FlaskConical, GitBranch, ShieldCheck, Sparkles, Target } from 'lucide-react';
+import { Banner, Bar, Card, CountUp, PageHead, Ring, Stat } from '../components/ui.jsx';
 import { useSession } from '../lib/SessionContext.jsx';
 
 const STEPS = [
   [GitBranch, 'Read your real work', 'We study your GitHub repos and resume instead of asking what you "like".'],
   [Compass, 'See your best-fit paths', 'Each path is scored from your own evidence, with what you are missing.'],
-  [FlaskConical, 'Try before you pick', 'A 20-minute task for each top path. You rate how much you enjoyed it.'],
+  [FlaskConical, 'Try before you pick', 'Three quick questions for each top path. You rate how much you enjoyed it.'],
   [CalendarCheck, 'Get a 30-day plan', 'Daily tasks sized to your free time. It adjusts when you miss days.'],
 ];
 
@@ -39,8 +39,8 @@ function Landing() {
           <a className="btn ghost lg" href="#how">How it works</a>
         </div>
         <div className="metrics reveal" style={{ '--i': 4 }}>
-          <div className="metric"><strong><CountUp value={8} /></strong><span>career paths scored</span></div>
-          <div className="metric"><strong><CountUp value={20} /> min</strong><span>per taste test</span></div>
+          <div className="metric"><strong><CountUp value={9} /></strong><span>career paths scored</span></div>
+          <div className="metric"><strong>~3 min</strong><span>per taste test</span></div>
           <div className="metric"><strong><CountUp value={30} /> days</strong><span>adaptive plan</span></div>
         </div>
       </section>
@@ -122,19 +122,27 @@ export default function Overview() {
         </Card>
 
         <Card className="reveal" style={{ '--i': 5 }}>
-          <h2 style={{ marginBottom: 20 }}>Your journey</h2>
-          <div className="stack">
+          <h2 style={{ marginBottom: 24 }}>Your journey</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {[
-              ['Evidence read', true],
-              ['Taste test taken', session.trials.length > 0],
-              ['Path chosen', Boolean(session.chosenPath)],
-              ['30-day plan created', Boolean(session.plan)],
-            ].map(([label, done]) => (
-              <div key={label} className="row">
-                <Chip tone={done ? 'good' : ''}>{done ? 'Done' : 'To do'}</Chip><span className={done ? '' : 'muted'}>{label}</span>
+              ['Evidence read', true, '/profile'],
+              ['Taste test taken', session.trials.length > 0, '/taste-test'],
+              ['Path chosen', Boolean(session.chosenPath), '/decision'],
+              ['30-day plan created', Boolean(session.plan), '/plan'],
+            ].map(([label, done, href], i, arr) => (
+              <div key={label} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0 }}>
+                  {done
+                    ? <CheckCircle2 size={22} style={{ color: 'var(--accent)', flexShrink: 0 }} />
+                    : <Circle size={22} style={{ color: 'var(--muted)', opacity: 0.4, flexShrink: 0 }} />}
+                  {i < arr.length - 1 && <div style={{ width: 2, flex: 1, minHeight: 28, background: done ? 'var(--accent)' : 'var(--border)', opacity: done ? 0.4 : 0.3, marginTop: 2, marginBottom: 2, borderRadius: 2 }} />}
+                </div>
+                <div style={{ paddingBottom: i < arr.length - 1 ? 20 : 0, paddingTop: 1 }}>
+                  <Link to={href} style={{ fontWeight: done ? 600 : 400, color: done ? 'var(--text)' : 'var(--muted)', fontSize: 14 }}>{label}</Link>
+                </div>
               </div>
             ))}
-            {progress && <div style={{ marginTop: 8 }} className="row"><Ring value={percent} size={72} /><span className="muted small">{progress.done} of {progress.total} days complete</span></div>}
+            {progress && <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid var(--border)' }} className="row"><Ring value={percent} size={72} /><span className="muted small">{progress.done} of {progress.total} days complete</span></div>}
           </div>
         </Card>
       </div>

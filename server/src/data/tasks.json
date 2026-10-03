@@ -1,106 +1,389 @@
 [
   {
-    "pathId": "fullstack", "title": "Fix the broken counter component", "minutes": 5,
-    "brief": "This React component should increase the count on click and show the count in the title, but it is buggy. Which fix is correct?",
-    "starter": "function Counter() {\n  let count = 0;\n  return (\n    <div>\n      <h1>Count: {count}</h1>\n      <button onClick={count++}>Add</button>\n    </div>\n  );\n}",
-    "options": [
-      "Change `let count = 0` to `const [count, setCount] = useState(0)` and `onClick={() => setCount(count + 1)}`",
-      "Change `onClick={count++}` to `onClick={() => count++}`",
-      "Change `let count = 0` to `var count = 0`",
-      "Move `let count = 0` outside the component function"
-    ],
-    "correctOptionIndex": 0,
-    "explanation": "React requires `useState` to track state changes and trigger a re-render. A local variable like `let count` will not update the UI when changed."
+    "pathId": "fullstack",
+    "title": "Web development quick check",
+    "minutes": 3,
+    "questions": [
+      {
+        "brief": "This React component should increase the count on click and show the count in the title, but it is buggy. Which fix is correct?",
+        "starter": "function Counter() {\n  let count = 0;\n  return (\n    <div>\n      <h1>Count: {count}</h1>\n      <button onClick={count++}>Add</button>\n    </div>\n  );\n}",
+        "options": [
+          "Change `let count = 0` to `const [count, setCount] = useState(0)` and `onClick={() => setCount(count + 1)}`",
+          "Change `onClick={count++}` to `onClick={() => count++}`",
+          "Change `let count = 0` to `var count = 0`",
+          "Move `let count = 0` outside the component function"
+        ],
+        "correctOptionIndex": 0,
+        "explanation": "React requires `useState` to track state changes and trigger a re-render. A local variable like `let count` will not update the UI when changed."
+      },
+      {
+        "brief": "What does this do? `useEffect(() => { loadUser(id); }, [id]);`",
+        "starter": "",
+        "options": [
+          "It runs only once, when the app first loads",
+          "It runs after every single render",
+          "It runs after the first render and again whenever `id` changes",
+          "It runs before the component renders"
+        ],
+        "correctOptionIndex": 2,
+        "explanation": "The dependency array `[id]` tells React to re-run the effect only when `id` changes, plus once after the first render."
+      },
+      {
+        "brief": "A login form sends a password from the browser to your API. What is the minimum you must do?",
+        "starter": "",
+        "options": [
+          "Send it over HTTPS and store only a salted hash (bcrypt or argon2) on the server",
+          "Encode it with base64 before sending",
+          "Store the password in localStorage so the user stays logged in",
+          "Hash it with MD5 in the browser and store that"
+        ],
+        "correctOptionIndex": 0,
+        "explanation": "HTTPS protects it in transit, and a slow salted hash (bcrypt/argon2) protects it at rest. Base64 is not encryption and MD5 is far too fast."
+      }
+    ]
   },
   {
-    "pathId": "backend", "title": "Design a small REST endpoint", "minutes": 5,
-    "brief": "You need to design a `POST /orders` endpoint for an e-commerce shop. Which of the following is the best practice for the response status code upon successful creation?",
-    "starter": "",
-    "options": [
-      "200 OK",
-      "201 Created",
-      "204 No Content",
-      "202 Accepted"
-    ],
-    "correctOptionIndex": 1,
-    "explanation": "The 201 Created status code is the HTTP standard for a successful POST request that results in the creation of a new resource."
+    "pathId": "backend",
+    "title": "Backend quick check",
+    "minutes": 3,
+    "questions": [
+      {
+        "brief": "You need to design a `POST /orders` endpoint for an e-commerce shop. Which of the following is the best practice for the response status code upon successful creation?",
+        "starter": "",
+        "options": [
+          "201 Created",
+          "200 OK",
+          "204 No Content",
+          "202 Accepted"
+        ],
+        "correctOptionIndex": 0,
+        "explanation": "The 201 Created status code is the HTTP standard for a successful POST request that results in the creation of a new resource."
+      },
+      {
+        "brief": "Which index speeds up `SELECT * FROM orders WHERE customer_id = 42` the most?",
+        "starter": "",
+        "options": [
+          "An index on `orders(customer_id)`",
+          "An index on `orders(created_at)`",
+          "A second primary key column",
+          "No index is needed, SQL is always fast"
+        ],
+        "correctOptionIndex": 0,
+        "explanation": "An index on the column you filter by lets the database jump to matching rows instead of scanning the whole table."
+      },
+      {
+        "brief": "Two customers try to buy the last item at the same moment. What prevents overselling?",
+        "starter": "",
+        "options": [
+          "Checking the stock in the browser first",
+          "Retrying the request every second",
+          "Running the update in a transaction, using a row lock or an atomic `UPDATE ... WHERE stock > 0`",
+          "Buying a bigger server"
+        ],
+        "correctOptionIndex": 2,
+        "explanation": "Concurrency bugs need the database to enforce the rule atomically. Browser checks and bigger servers don't remove the race."
+      }
+    ]
   },
   {
-    "pathId": "qa-sdet", "title": "Break the login form", "minutes": 5,
-    "brief": "A login form has a password field requiring 8-20 characters. Which of the following test inputs is the best example of 'Boundary Value Analysis'?",
-    "starter": "",
-    "options": [
-      "A password with exactly 12 characters",
-      "A password with special characters like !@#$",
-      "Passwords with exactly 7, 8, 20, and 21 characters",
-      "Leaving the password field completely empty"
-    ],
-    "correctOptionIndex": 2,
-    "explanation": "Boundary Value Analysis tests the exact boundaries (8 and 20) and the values just outside them (7 and 21) to catch off-by-one errors."
+    "pathId": "qa-sdet",
+    "title": "Testing quick check",
+    "minutes": 3,
+    "questions": [
+      {
+        "brief": "A login form has a password field requiring 8-20 characters. Which of the following test inputs is the best example of 'Boundary Value Analysis'?",
+        "starter": "",
+        "options": [
+          "A password with exactly 12 characters",
+          "A password with special characters like !@#$",
+          "Passwords with exactly 7, 8, 20, and 21 characters",
+          "Leaving the password field completely empty"
+        ],
+        "correctOptionIndex": 2,
+        "explanation": "Boundary Value Analysis tests the exact boundaries (8 and 20) and the values just outside them (7 and 21) to catch off-by-one errors."
+      },
+      {
+        "brief": "A field accepts ages from 18 to 60. Which set of test values best covers the boundaries?",
+        "starter": "",
+        "options": [
+          "10, 30, 50",
+          "0 and 100",
+          "18 and 60 only",
+          "17, 18, 60, 61"
+        ],
+        "correctOptionIndex": 3,
+        "explanation": "Boundary testing checks just outside and exactly on each edge: 17 and 18 at the bottom, 60 and 61 at the top."
+      },
+      {
+        "brief": "In the testing pyramid, which kind of test should you have the FEWEST of?",
+        "starter": "",
+        "options": [
+          "Unit tests",
+          "Linting rules",
+          "End-to-end UI tests",
+          "Type checks"
+        ],
+        "correctOptionIndex": 2,
+        "explanation": "End-to-end tests are the slowest and most fragile, so you keep a small number for critical journeys and rely on many fast unit tests."
+      }
+    ]
   },
   {
-    "pathId": "data-analyst", "title": "Answer a business question with SQL", "minutes": 5,
-    "brief": "You have an `orders` table with `customer_id` and `amount`. You need to find the total revenue per customer. Which SQL clause must you use?",
-    "starter": "",
-    "options": [
-      "ORDER BY customer_id",
-      "GROUP BY customer_id",
-      "WHERE customer_id = amount",
-      "PARTITION BY amount"
-    ],
-    "correctOptionIndex": 1,
-    "explanation": "The `GROUP BY` clause is used alongside aggregate functions like `SUM(amount)` to group the result set by one or more columns (e.g., customer_id)."
+    "pathId": "data-analyst",
+    "title": "Data analysis quick check",
+    "minutes": 3,
+    "questions": [
+      {
+        "brief": "You have an `orders` table with `customer_id` and `amount`. You need to find the total revenue per customer. Which SQL clause must you use?",
+        "starter": "",
+        "options": [
+          "ORDER BY customer_id",
+          "GROUP BY customer_id",
+          "WHERE customer_id = amount",
+          "PARTITION BY amount"
+        ],
+        "correctOptionIndex": 1,
+        "explanation": "The `GROUP BY` clause is used alongside aggregate functions like `SUM(amount)` to group the result set by one or more columns (e.g., customer_id)."
+      },
+      {
+        "brief": "Which query gives the number of orders per customer?",
+        "starter": "",
+        "options": [
+          "`SELECT COUNT(*) FROM orders ORDER BY customer_id;`",
+          "`SELECT customer_id FROM orders HAVING COUNT(*);`",
+          "`SELECT DISTINCT customer_id FROM orders;`",
+          "`SELECT customer_id, COUNT(*) FROM orders GROUP BY customer_id;`"
+        ],
+        "correctOptionIndex": 3,
+        "explanation": "`GROUP BY customer_id` makes one row per customer, and `COUNT(*)` counts the orders in each group."
+      },
+      {
+        "brief": "Sales dropped 20% in March. What should you check FIRST before reporting it?",
+        "starter": "",
+        "options": [
+          "Whether the data is complete and comparable (missing days, tracking changes, fewer working days)",
+          "Which team to blame",
+          "Whether you can remove March from the chart",
+          "What April will look like"
+        ],
+        "correctOptionIndex": 0,
+        "explanation": "A sudden drop is often a data problem (missing days, broken tracking) rather than a real change, so verify the data first."
+      }
+    ]
   },
   {
-    "pathId": "devops-cloud", "title": "Write a Dockerfile", "minutes": 5,
-    "brief": "You are writing a Dockerfile for a Node.js app. Which of the following correctly installs the production dependencies?",
-    "starter": "",
-    "options": [
-      "RUN npm install --production",
-      "CMD npm install",
-      "COPY package.json ./ && npm install",
-      "RUN npm ci --only=production"
-    ],
-    "correctOptionIndex": 3,
-    "explanation": "`npm ci --only=production` is the best practice for CI and Docker builds because it strictly follows the package-lock.json and skips devDependencies."
+    "pathId": "devops-cloud",
+    "title": "DevOps quick check",
+    "minutes": 3,
+    "questions": [
+      {
+        "brief": "You are writing a Dockerfile for a Node.js app. Which of the following correctly installs the production dependencies?",
+        "starter": "",
+        "options": [
+          "RUN npm install --production",
+          "CMD npm install",
+          "COPY package.json ./ && npm install",
+          "RUN npm ci --only=production"
+        ],
+        "correctOptionIndex": 3,
+        "explanation": "`npm ci --only=production` is the best practice for CI and Docker builds because it strictly follows the package-lock.json and skips devDependencies."
+      },
+      {
+        "brief": "A new release breaks production. What is the fastest SAFE fix?",
+        "starter": "",
+        "options": [
+          "Debug directly on the production server",
+          "Roll back to the previous known-good version",
+          "Restart every server again and again",
+          "Delete the logs so nobody sees the errors"
+        ],
+        "correctOptionIndex": 1,
+        "explanation": "Rolling back restores service quickly and safely. You then debug the failed release calmly in a non-production environment."
+      },
+      {
+        "brief": "What is the main purpose of a CI pipeline?",
+        "starter": "",
+        "options": [
+          "To replace code review",
+          "To deploy to production without running tests",
+          "To store team passwords",
+          "To automatically build and test every change so problems are found early"
+        ],
+        "correctOptionIndex": 3,
+        "explanation": "CI runs the build and tests on every change, so breakages are caught within minutes instead of days later."
+      }
+    ]
   },
   {
-    "pathId": "ai-apps", "title": "Plan a small RAG assistant", "minutes": 5,
-    "brief": "A college wants a chatbot that answers ONLY from its 200-page rules PDF. To prevent hallucination, what is the most critical step in your RAG pipeline?",
-    "starter": "",
-    "options": [
-      "Use a larger LLM like GPT-4 instead of a smaller one",
-      "Instruct the LLM in the prompt to 'only use the provided context and say I don't know if the answer is missing'",
-      "Increase the temperature of the LLM to 1.0",
-      "Generate embeddings for the entire 200-page PDF as a single chunk"
-    ],
-    "correctOptionIndex": 1,
-    "explanation": "Prompt constraints are crucial in RAG. Explicitly telling the model to rely solely on the retrieved context and admit ignorance prevents it from falling back on its training data (hallucinating)."
+    "pathId": "ai-apps",
+    "title": "AI apps quick check",
+    "minutes": 3,
+    "questions": [
+      {
+        "brief": "A college wants a chatbot that answers ONLY from its 200-page rules PDF. To prevent hallucination, what is the most critical step in your RAG pipeline?",
+        "starter": "",
+        "options": [
+          "Use a larger LLM like GPT-4 instead of a smaller one",
+          "Instruct the LLM in the prompt to 'only use the provided context and say I don't know if the answer is missing'",
+          "Increase the temperature of the LLM to 1.0",
+          "Generate embeddings for the entire 200-page PDF as a single chunk"
+        ],
+        "correctOptionIndex": 1,
+        "explanation": "Prompt constraints are crucial in RAG. Explicitly telling the model to rely solely on the retrieved context and admit ignorance prevents it from falling back on its training data (hallucinating)."
+      },
+      {
+        "brief": "In a RAG system, what happens when a user asks a question?",
+        "starter": "",
+        "options": [
+          "The model is retrained on the question",
+          "The most relevant text chunks are retrieved and placed in the prompt, then the model answers",
+          "The whole internet is searched",
+          "The model is compressed to answer faster"
+        ],
+        "correctOptionIndex": 1,
+        "explanation": "RAG retrieves relevant chunks from your documents at question time and gives them to the model as context. No retraining is involved."
+      },
+      {
+        "brief": "Which setup most directly reduces made-up answers in a document Q&A bot?",
+        "starter": "",
+        "options": [
+          "Raise the temperature so answers are more creative",
+          "Use very short prompts",
+          "Ask users to double-check everything",
+          "Answer only from retrieved text, cite the source, and say \"I don't know\" when nothing relevant is found"
+        ],
+        "correctOptionIndex": 3,
+        "explanation": "Grounding answers in retrieved text and allowing \"I don't know\" is the most direct protection against hallucination."
+      }
+    ]
   },
   {
-    "pathId": "support-solutions", "title": "Help an angry customer", "minutes": 5,
-    "brief": "A customer writes: 'Your API returns 401 since this morning and my shop is down!'. What is the most likely technical cause of a 401 error?",
-    "starter": "",
-    "options": [
-      "The server is completely down and offline",
-      "The customer's API key is missing, expired, or invalid",
-      "The customer is sending invalid JSON in the request body",
-      "The endpoint URL was mistyped (e.g., /apii instead of /api)"
-    ],
-    "correctOptionIndex": 1,
-    "explanation": "401 Unauthorized specifically means the request lacks valid authentication credentials. 400 is for invalid JSON, 404 is for mistyped URLs, and 50x is for server downtime."
+    "pathId": "support-solutions",
+    "title": "Customer support quick check",
+    "minutes": 3,
+    "questions": [
+      {
+        "brief": "A customer writes: 'Your API returns 401 since this morning and my shop is down!'. What is the most likely technical cause of a 401 error?",
+        "starter": "",
+        "options": [
+          "The server is completely down and offline",
+          "The customer's API key is missing, expired, or invalid",
+          "The customer is sending invalid JSON in the request body",
+          "The endpoint URL was mistyped (e.g., /apii instead of /api)"
+        ],
+        "correctOptionIndex": 1,
+        "explanation": "401 Unauthorized specifically means the request lacks valid authentication credentials. 400 is for invalid JSON, 404 is for mistyped URLs, and 50x is for server downtime."
+      },
+      {
+        "brief": "A customer writes \"it doesn't work\". What is the best first reply?",
+        "starter": "",
+        "options": [
+          "Tell them to reinstall the app",
+          "Ask for the exact steps, what they expected, what happened instead, and any error message",
+          "Say it works fine on your machine",
+          "Escalate to engineering immediately"
+        ],
+        "correctOptionIndex": 1,
+        "explanation": "You can't fix what you can't reproduce. Clear steps, expected vs actual behaviour, and the error message give you what you need."
+      },
+      {
+        "brief": "An API call returns HTTP 403. What does that usually mean?",
+        "starter": "",
+        "options": [
+          "The server crashed",
+          "The resource does not exist",
+          "The request body is not valid JSON",
+          "You are identified, but you are not allowed to do that"
+        ],
+        "correctOptionIndex": 3,
+        "explanation": "401 means \"who are you?\" (not authenticated) while 403 means \"I know who you are, but you may not do this\" (not authorised)."
+      }
+    ]
   },
   {
-    "pathId": "product-sde", "title": "Two Sum complexity", "minutes": 5,
-    "brief": "Given an array of numbers, the brute force Two Sum solution (nested loops) has a time complexity of O(n^2). By using a Hash Map, you can optimize this. What is the time complexity of the Hash Map solution?",
-    "starter": "",
-    "options": [
-      "O(1)",
-      "O(log n)",
-      "O(n)",
-      "O(n log n)"
-    ],
-    "correctOptionIndex": 2,
-    "explanation": "A Hash Map allows O(1) lookups. By passing through the array once and storing/checking values in the map, the overall time complexity drops to O(n)."
+    "pathId": "product-sde",
+    "title": "DSA quick check",
+    "minutes": 3,
+    "questions": [
+      {
+        "brief": "Given an array of numbers, the brute force Two Sum solution (nested loops) has a time complexity of O(n^2). By using a Hash Map, you can optimize this. What is the time complexity of the Hash Map solution?",
+        "starter": "",
+        "options": [
+          "O(1)",
+          "O(log n)",
+          "O(n)",
+          "O(n log n)"
+        ],
+        "correctOptionIndex": 2,
+        "explanation": "A Hash Map allows O(1) lookups. By passing through the array once and storing/checking values in the map, the overall time complexity drops to O(n)."
+      },
+      {
+        "brief": "Which data structure gives O(1) average-time lookup by key?",
+        "starter": "",
+        "options": [
+          "A hash map",
+          "A sorted array with binary search",
+          "A linked list",
+          "A balanced binary search tree"
+        ],
+        "correctOptionIndex": 0,
+        "explanation": "Hash maps compute a slot from the key, so lookup is O(1) on average. Binary search and balanced trees are O(log n), linked lists O(n)."
+      },
+      {
+        "brief": "What is the time complexity of binary search on a sorted array of n items?",
+        "starter": "",
+        "options": [
+          "O(n)",
+          "O(n log n)",
+          "O(log n)",
+          "O(1)"
+        ],
+        "correctOptionIndex": 2,
+        "explanation": "Each step halves the remaining range, so it takes about log2(n) steps."
+      }
+    ]
+  },
+  {
+    "pathId": "mobile",
+    "title": "Mobile apps quick check",
+    "minutes": 3,
+    "questions": [
+      {
+        "brief": "In React Native, which component should render a long scrollable list efficiently?",
+        "starter": "",
+        "options": [
+          "`ScrollView` with every item mapped inside it",
+          "`FlatList`",
+          "A `View` with overflow set",
+          "A `Text` component with line breaks"
+        ],
+        "correctOptionIndex": 1,
+        "explanation": "`FlatList` renders only the items near the screen and recycles them, which keeps long lists smooth and memory-friendly."
+      },
+      {
+        "brief": "A mobile app must stay useful on a train with no signal. Which approach helps most?",
+        "starter": "",
+        "options": [
+          "Cache data locally and sync when the connection returns",
+          "Show a loading spinner until the network is back",
+          "Ask the user to log in again each time",
+          "Send requests more often"
+        ],
+        "correctOptionIndex": 0,
+        "explanation": "Offline-first apps read from a local cache and sync later, so users keep working without a connection."
+      },
+      {
+        "brief": "Where should an app store a user's authentication token?",
+        "starter": "",
+        "options": [
+          "In plain text in a file",
+          "In the app's source code",
+          "In the operating system's secure storage (iOS Keychain / Android Keystore)",
+          "In the URL so it is easy to share"
+        ],
+        "correctOptionIndex": 2,
+        "explanation": "Keychain and Keystore are encrypted, OS-protected storage. Plain files and source code can be read by others."
+      }
+    ]
   }
 ]

@@ -18,7 +18,7 @@ Node 22.13+ is required for the built-in `node:sqlite` (it prints an "experiment
 |---|---|
 | Add or edit a career path | `server/src/data/paths.json` (skills with weights, DSA level) |
 | Add a skill the profile can detect | `server/src/data/skills.json` (id, label, aliases) |
-| Add or edit a taste-test task | `server/src/data/tasks.json` (one per path; keep a rubric) |
+| Add or edit a taste-test task | `server/src/data/tasks.json` (one task per path, each with 3 `questions`: `brief`, `options`, `correctOptionIndex`, `explanation`) |
 | Change how paths are scored | `server/src/services/scoring.js` |
 | Change decision weights | `WEIGHTS` in `server/src/services/decision.js` |
 | Change the checker rules | `validateExplanations` in `server/src/services/explain.js` |
@@ -28,7 +28,7 @@ Node 22.13+ is required for the built-in `node:sqlite` (it prints an "experiment
 
 ### Add a path (example)
 1. Add an entry to `paths.json`, using skill ids that exist in `skills.json`.
-2. Add a task for it in `tasks.json` with the same `pathId` and a rubric.
+2. Add a task for it in `tasks.json` with the same `pathId` and 3 questions, each with 3-5 options, a `correctOptionIndex` and an `explanation`. The tests check this, and that every skill is used by some path.
 3. Run `npm test`. The tests check that every path scores sensibly.
 
 ### Use a different model
@@ -57,7 +57,7 @@ Small models follow the "copy evidence exactly" rule less reliably. The checker 
 |---|---|
 | Server logic and API | **Verified:** 64 automated tests (fake GitHub + fake model) |
 | Client components, pages and routing | **Verified:** 73 automated tests |
-| Real model + real GitHub | **Verified:** the live suite passes (7/7) with `openai/gpt-oss-120b` on Groq: every claim backed by evidence, correct answers scored 93-100 and lazy answers 0-5 across all 8 tasks, prompt injection scored 0, real 30-day plans |
+| Real model + real GitHub | **Verified:** the live suite passes (7/7) with `openai/gpt-oss-120b` on Groq: every claim backed by evidence, real 30-day plans that stay in the student's stack |
 | Real browser, whole journey | **Verified:** a scripted Chrome session clicked through landing, evidence, analysis, taste test, decision, plan and overview against the real backend and model: no console errors, progress survives a reload, later steps stay locked until earlier ones are done |
 | Layout | Screenshots checked at 1440px and 390px (mobile) |
 | Llama 3.3 70B specifically | **Not verified:** that model is not enabled on the Groq account used for testing. Everything above ran on `gpt-oss-120b`. Switch with `LLM_MODEL` and run `npm run test:live -w server` |
@@ -75,7 +75,7 @@ Small models follow the "copy evidence exactly" rule less reliably. The checker 
 ## Known limits and next steps
 
 - Skill detection is keyword- and file-based. A repo's README text isn't read yet.
-- Taste-test grading is model-based; there are no code-execution checks.
+- Each taste test is three multiple-choice questions, so it is a quick signal and not a skills exam. A larger question bank, with a random three per attempt, would make it harder to memorise.
 - One task per path. Adding a second and rotating them would reduce repeat answers.
 - No authentication: the session id in the browser is the only key.
 - Planned: Postgres adapter, a job queue for slow model calls, saving real job-post data per path.

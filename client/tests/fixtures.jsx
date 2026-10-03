@@ -50,7 +50,15 @@ export const makePlan = ({ today = 1, doneSeqs = [], days = 30, startDay = (i) =
 
 export const makeTrial = (pathId, score = 80, enjoyment = 4) => ({
   pathId, score, enjoyment,
-  feedback: { score, feedback: 'Solid answer overall.', strengths: ['Clear structure'], improvements: ['Add tests'] },
+  feedback: {
+    feedback: score === 100 ? 'Perfect: 3 of 3 correct.' : 'You got 2 of 3 correct. Read the explanations below.',
+    right: score === 100 ? 3 : 2, total: 3,
+    review: [
+      { question: 'First question?', chosen: 'Right one', correctOption: 'Right one', isCorrect: true, explanation: 'Because it is right.' },
+      { question: 'Second question?', chosen: 'Wrong one', correctOption: 'Better one', isCorrect: score === 100, explanation: 'Because better.' },
+      { question: 'Third question?', chosen: 'Right again', correctOption: 'Right again', isCorrect: true, explanation: 'Because yes.' },
+    ],
+  },
 });
 
 export const ROUTER_FUTURE = { v7_startTransition: true, v7_relativeSplatPath: true };

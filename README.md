@@ -22,9 +22,9 @@ Final-year students are told two things: "start LeetCode" and "pick a role". Man
 ## What Trailhead does about it
 
 1. **Reads your real work.** It studies your public GitHub repos and optional resume text, then builds a profile where *every skill carries evidence*.
-2. **Scores 8 career paths in plain code.** Fit is the share of each path's weighted skills you already show. It is reproducible, so a model can't make the numbers up.
+2. **Scores 9 career paths in plain code.** Fit is the share of each path's weighted skills you already show. It is reproducible, so a model can't make the numbers up.
 3. **Explains with a fact-checker.** A language model writes the "why it fits" text, but a checker rejects any claim not backed by your evidence and makes the model retry.
-4. **Lets you try before you pick.** A quick multiple-choice Taste Test for each top path. The model scores it with perfect accuracy while providing custom educational feedback, and you rate how much you enjoyed it.
+4. **Lets you try before you pick.** Three quick multiple-choice questions for each top path (about 3 minutes), graded in code (so it is instant and always consistent) with a hand-written explanation for each, and you rate how much you enjoyed it.
 5. **Decides transparently.** `40% fit + 35% trial score + 25% enjoyment`, with the breakdown shown. You can override it.
 6. **Builds a 30-day plan that adapts.** Daily tasks sized to your free time. Miss days, and unfinished tasks slide forward.
 
@@ -179,7 +179,7 @@ npm run test:live -w server   # real Groq + real GitHub (needs server/.env), a f
 |---|---|
 | Server (64 run, 7 live-only) | Skill detection (including negation: "I'd rather avoid DSA" is not DSA experience), scoring, the claim checker, the retry/fallback graph, the LLM client (JSON retries, error mapping, rate-limit wait, model check), decision maths, re-planning with a shifted clock, rate limiting, oversized/malformed bodies, prompt-injection handling, and the full HTTP journey |
 | Client (73) | Sidebar locking and model badge states, every page's behaviour, route gating, the API wrapper, and the animation helpers |
-| Live (7) | Real analysis with every claim backed by evidence, grading of correct vs lazy answers for **all 8 tasks**, prompt-injection resistance, and a real 30-day plan that stays in the student's stack |
+| Live (7) | Real analysis with every claim backed by evidence, code-graded 3-question taste tests (score = share correct, bad input rejected, answer key never sent), and a real 30-day plan that stays in the student's stack |
 
 Server and client tests use fake GitHub and fake model clients, so they are fast and need no keys.
 
@@ -194,5 +194,5 @@ Server and client tests use fake GitHub and fake model clients, so they are fast
 ## Limits (read these)
 
 - Fit scores come from **public GitHub evidence and resume keywords**. They suggest, they don't judge a person. Students with few public repos get a "not enough evidence" warning.
-- Taste-test questions are multiple-choice, ensuring strictly accurate grading, though the model still generates the custom educational feedback explanations.
+- Taste tests are three multiple-choice questions per path, graded in code, so scoring is instant, free and identical every time (the score is the share you got right). The questions and explanations are written by hand in `server/src/data/tasks.json`. It is a quick signal, not a skills exam.
 - Sessions are anonymous, and the session id in the browser is the only key. Fine for a personal tool; add real auth before a multi-user launch.

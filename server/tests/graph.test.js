@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createAnalyzeGraph } from '../src/graph/analyze.js';
 import { cleanFromFacts, fakeGithub, fakeLlm } from './helpers.js';
+import { PATHS } from '../src/services/catalog.js';
 
 const run = (llm, extra = {}) =>
   createAnalyzeGraph({ github: fakeGithub(), llm, ...extra }).run({ username: 'ada', resumeText: '', dislikesDsa: true });
@@ -48,5 +49,5 @@ test('if the model is down the analysis still returns, and says why', async () =
   assert.equal(analysis.meta.usedFallback, true);
   assert.equal(analysis.meta.attempts, 0);
   assert.match(analysis.meta.llmError, /not configured/);
-  assert.equal(analysis.ranking.length, 8);
+  assert.equal(analysis.ranking.length, PATHS.length);
 });

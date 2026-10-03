@@ -13,7 +13,8 @@ const createBody = z.object({
 });
 const trialBody = z.object({
   pathId: z.string().min(1),
-  answer: z.string().trim().min(20, 'Write a little more (at least 20 characters)').max(8_000),
+  // one chosen option index per question, as strings ("0"-"3")
+  answers: z.array(z.string().trim().regex(/^\d+$/, 'Pick one of the options')).min(1, 'Answer the questions').max(10),
   enjoyment: z.number().int().min(1).max(5),
 });
 const decideBody = z.object({ pathId: z.string().optional() });

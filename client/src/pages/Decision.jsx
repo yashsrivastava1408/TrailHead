@@ -51,7 +51,7 @@ export default function Decision() {
 
       <div className="stack lg">
         {preview.options.map((o, i) => (
-          <Card key={o.pathId} className={`lift reveal option ${picked === o.pathId ? 'picked' : ''}`} style={{ '--i': i }} onClick={() => setPicked(o.pathId)}>
+          <Card key={o.pathId} className={`lift reveal option ${picked === o.pathId ? 'picked' : ''}`} style={{ '--i': i, background: picked === o.pathId ? 'rgba(52, 211, 153, 0.08)' : 'rgba(255, 255, 255, 0.02)', borderColor: picked === o.pathId ? 'var(--accent)' : 'rgba(255, 255, 255, 0.1)' }} onClick={() => setPicked(o.pathId)}>
             <div className="spread">
               <label className="check" style={{ margin: 0 }}>
                 <input type="radio" name="path" checked={picked === o.pathId} onChange={() => setPicked(o.pathId)} /> <h2>{o.name}</h2>

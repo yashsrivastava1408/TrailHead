@@ -58,13 +58,13 @@ The same view, current state.
 ## Taste test
 
 ### `GET /sessions/:id/tasks/:pathId`
-The task for one of the student's **top 3** paths: `{ pathId, title, minutes, brief, starter }`. The grading rubric is not exposed. `400` for other paths, `404` for unknown ones.
+The task for one of the student's **top 3** paths: `{ pathId, title, minutes, questions: [{ brief, starter, options }] }` (3 questions). The answer key (`correctOptionIndex`) and the explanations are **not** sent. `400` for other paths, `404` for unknown ones.
 
 ### `POST /sessions/:id/trials` ⏱
 ```json
-{ "pathId": "fullstack", "answer": "at least 20 characters…", "enjoyment": 4 }
+{ "pathId": "fullstack", "answers": ["2", "0", "3"], "enjoyment": 4 }
 ```
-`enjoyment`: 1-5. The model grades the answer. Retrying the same path replaces the earlier trial. Returns the session view; each trial has `{ pathId, score, enjoyment, feedback: { score, feedback, strengths, improvements } }` (the answer text is not returned).
+`answers` has one option index (as a string) per question, in order; the wrong number of answers, a non-number, or an index that doesn't exist is a `400`. `enjoyment`: 1-5. Grading is done in code: the score is the share of questions answered correctly (0, 33, 67 or 100). It needs no model and is never rate limited. Retrying the same path replaces the earlier trial. Returns the session view; each trial has `{ pathId, score, enjoyment, feedback: { feedback, right, total, review: [{ question, chosen, correctOption, isCorrect, explanation }] } }`. The review (with the right answers and explanations) is only returned after answering; the raw answers are not returned.
 
 ## Decision
 

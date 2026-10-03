@@ -127,7 +127,7 @@ sequenceDiagram
   API-->>UI: session
   S->>UI: taste-test answer + enjoyment
   UI->>API: POST /trials
-  API->>LLM: grade against rubric
+  API->>API: grade the choice in code (no model)
   S->>UI: confirm path
   UI->>API: GET then POST /decision
   UI->>API: POST /plan
@@ -143,7 +143,7 @@ sequenceDiagram
 | Model returns invalid JSON | Error is fed back; up to 3 tries; then a clear 502 |
 | Model returns false claims | Checker rejects, retries with the problems; then code-only fallback |
 | No API key / model down during analysis | Real scores returned; basic wording; reason shown in the UI |
-| Model down during grading | `503` with a message (a grade can't be faked) |
+| Model down during grading | Nothing happens: taste tests are graded in code, so they keep working |
 | Model returns a bad plan | Template plan; reason returned as `planNote` |
 | GitHub user missing / rate limited | `404` / `429` with an actionable message |
 
@@ -154,7 +154,7 @@ sequenceDiagram
 - Parameterised SQL only (prepared statements).
 - Per-IP rate limit on endpoints that call the model or GitHub.
 - The resume and trial answers are stored but **never returned** by the API.
-- The grading prompt marks the student's answer as untrusted data.
+- Taste-test answers are validated as option indices and graded in code, so there is no model prompt to inject into. The answer key and explanation never leave the server until the student has answered.
 - Secrets live in `server/.env`, which is git-ignored.
 
 ## 8. Performance and scaling
@@ -173,7 +173,7 @@ sequenceDiagram
 |---|---|
 | Scores in code, words from the model | Numbers must be reproducible and unforgeable |
 | Evidence strings must be copied exactly | Makes "no invented claims" a mechanical check |
-| Curated taste-test tasks, model only grades | Tasks are reviewed by a human; grading needs flexibility |
+| Multiple-choice taste tests (3 questions per path) graded in code | Comparing numbers doesn't need a model: instant, free, never rate limited, always the same |
 | `node:sqlite` instead of a native module | No build toolchain; works on any Node 22.13+ |
 | JSON-in-prompt instead of provider tool calling | Works the same on Groq, Ollama and others |
 | Anonymous sessions | Zero friction for a single-person tool |

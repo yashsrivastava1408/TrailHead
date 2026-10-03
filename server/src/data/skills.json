@@ -48,9 +48,13 @@
   "express": {
     "label": "Express",
     "aliases": [
-      "express",
       "expressjs",
       "express.js",
+      "express server",
+      "express app",
+      "express api",
+      "express router",
+      "express middleware",
       "nestjs"
     ]
   },
@@ -286,6 +290,75 @@
       "documentation",
       "technical writing",
       "readme"
+    ]
+  },
+  "go": {
+    "label": "Go (Golang)",
+    "aliases": [
+      "golang",
+      "go.mod",
+      "gin-gonic"
+    ]
+  },
+  "rust": {
+    "label": "Rust",
+    "aliases": [
+      "rust",
+      "cargo",
+      "tokio"
+    ]
+  },
+  "redis": {
+    "label": "Redis / Caching",
+    "aliases": [
+      "redis",
+      "memcached",
+      "upstash"
+    ]
+  },
+  "firebase": {
+    "label": "Firebase / Supabase",
+    "aliases": [
+      "firebase",
+      "firestore",
+      "supabase"
+    ]
+  },
+  "prisma": {
+    "label": "ORM (Prisma / Drizzle)",
+    "aliases": [
+      "prisma",
+      "drizzle",
+      "sequelize",
+      "typeorm"
+    ]
+  },
+  "mobile": {
+    "label": "Mobile (React Native / Flutter)",
+    "aliases": [
+      "react native",
+      "flutter",
+      "android",
+      "kotlin",
+      "swiftui",
+      "jetpack compose"
+    ]
+  },
+  "websockets": {
+    "label": "WebSockets / Real-time",
+    "aliases": [
+      "websocket",
+      "websockets",
+      "socket.io"
+    ]
+  },
+  "graphql": {
+    "label": "GraphQL",
+    "aliases": [
+      "graphql",
+      "hasura",
+      "apollo client",
+      "apollo server"
     ]
   }
 }

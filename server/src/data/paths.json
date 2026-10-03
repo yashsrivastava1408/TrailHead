@@ -5,9 +5,58 @@
     "dsaLevel": "medium",
     "summary": "Build user-facing apps end to end: UI, API and database. Many service and product startups hire for this with project-based interviews.",
     "skills": [
-      { "id": "javascript", "weight": 3 }, { "id": "react", "weight": 3 }, { "id": "html-css", "weight": 2 },
-      { "id": "nodejs", "weight": 2 }, { "id": "rest-api", "weight": 2 }, { "id": "sql", "weight": 2 },
-      { "id": "git", "weight": 1 }, { "id": "testing", "weight": 1 }, { "id": "cloud", "weight": 1 }
+      {
+        "id": "javascript",
+        "weight": 3
+      },
+      {
+        "id": "react",
+        "weight": 3
+      },
+      {
+        "id": "html-css",
+        "weight": 2
+      },
+      {
+        "id": "nodejs",
+        "weight": 2
+      },
+      {
+        "id": "rest-api",
+        "weight": 2
+      },
+      {
+        "id": "sql",
+        "weight": 2
+      },
+      {
+        "id": "git",
+        "weight": 1
+      },
+      {
+        "id": "testing",
+        "weight": 1
+      },
+      {
+        "id": "cloud",
+        "weight": 1
+      },
+      {
+        "id": "typescript",
+        "weight": 1
+      },
+      {
+        "id": "graphql",
+        "weight": 1
+      },
+      {
+        "id": "websockets",
+        "weight": 1
+      },
+      {
+        "id": "firebase",
+        "weight": 1
+      }
     ]
   },
   {
@@ -16,9 +65,62 @@
     "dsaLevel": "medium",
     "summary": "Design APIs, databases and services. Interviews mix system thinking with moderate DSA.",
     "skills": [
-      { "id": "nodejs", "weight": 2 }, { "id": "java", "weight": 2 }, { "id": "python", "weight": 2 },
-      { "id": "rest-api", "weight": 3 }, { "id": "sql", "weight": 3 }, { "id": "mongodb", "weight": 1 },
-      { "id": "docker", "weight": 1 }, { "id": "testing", "weight": 2 }, { "id": "git", "weight": 1 }
+      {
+        "id": "nodejs",
+        "weight": 2
+      },
+      {
+        "id": "java",
+        "weight": 2
+      },
+      {
+        "id": "python",
+        "weight": 2
+      },
+      {
+        "id": "rest-api",
+        "weight": 3
+      },
+      {
+        "id": "sql",
+        "weight": 3
+      },
+      {
+        "id": "mongodb",
+        "weight": 1
+      },
+      {
+        "id": "docker",
+        "weight": 1
+      },
+      {
+        "id": "testing",
+        "weight": 2
+      },
+      {
+        "id": "git",
+        "weight": 1
+      },
+      {
+        "id": "go",
+        "weight": 1
+      },
+      {
+        "id": "redis",
+        "weight": 1
+      },
+      {
+        "id": "prisma",
+        "weight": 1
+      },
+      {
+        "id": "graphql",
+        "weight": 1
+      },
+      {
+        "id": "express",
+        "weight": 1
+      }
     ]
   },
   {
@@ -27,9 +129,46 @@
     "dsaLevel": "low",
     "summary": "Break software on purpose and automate the checks. Strong demand, light on DSA, heavy on care and curiosity.",
     "skills": [
-      { "id": "testing", "weight": 3 }, { "id": "test-automation", "weight": 3 }, { "id": "debugging", "weight": 2 },
-      { "id": "python", "weight": 1 }, { "id": "javascript", "weight": 1 }, { "id": "java", "weight": 1 },
-      { "id": "sql", "weight": 2 }, { "id": "rest-api", "weight": 2 }, { "id": "git", "weight": 1 }, { "id": "ci-cd", "weight": 2 }
+      {
+        "id": "testing",
+        "weight": 3
+      },
+      {
+        "id": "test-automation",
+        "weight": 3
+      },
+      {
+        "id": "debugging",
+        "weight": 2
+      },
+      {
+        "id": "python",
+        "weight": 1
+      },
+      {
+        "id": "javascript",
+        "weight": 1
+      },
+      {
+        "id": "java",
+        "weight": 1
+      },
+      {
+        "id": "sql",
+        "weight": 2
+      },
+      {
+        "id": "rest-api",
+        "weight": 2
+      },
+      {
+        "id": "git",
+        "weight": 1
+      },
+      {
+        "id": "ci-cd",
+        "weight": 2
+      }
     ]
   },
   {
@@ -38,8 +177,26 @@
     "dsaLevel": "low",
     "summary": "Turn raw data into decisions using SQL, spreadsheets and charts. Interviews are SQL and case based.",
     "skills": [
-      { "id": "sql", "weight": 4 }, { "id": "pandas", "weight": 3 }, { "id": "python", "weight": 2 },
-      { "id": "data-viz", "weight": 3 }, { "id": "docs", "weight": 1 }
+      {
+        "id": "sql",
+        "weight": 4
+      },
+      {
+        "id": "pandas",
+        "weight": 3
+      },
+      {
+        "id": "python",
+        "weight": 2
+      },
+      {
+        "id": "data-viz",
+        "weight": 3
+      },
+      {
+        "id": "docs",
+        "weight": 1
+      }
     ]
   },
   {
@@ -48,9 +205,38 @@
     "dsaLevel": "low",
     "summary": "Ship and run software reliably: pipelines, containers and cloud. Light on DSA, heavy on tooling.",
     "skills": [
-      { "id": "linux", "weight": 3 }, { "id": "docker", "weight": 3 }, { "id": "ci-cd", "weight": 3 },
-      { "id": "cloud", "weight": 3 }, { "id": "kubernetes", "weight": 1 }, { "id": "iac", "weight": 1 },
-      { "id": "git", "weight": 1 }, { "id": "python", "weight": 1 }
+      {
+        "id": "linux",
+        "weight": 3
+      },
+      {
+        "id": "docker",
+        "weight": 3
+      },
+      {
+        "id": "ci-cd",
+        "weight": 3
+      },
+      {
+        "id": "cloud",
+        "weight": 3
+      },
+      {
+        "id": "kubernetes",
+        "weight": 1
+      },
+      {
+        "id": "iac",
+        "weight": 1
+      },
+      {
+        "id": "git",
+        "weight": 1
+      },
+      {
+        "id": "python",
+        "weight": 1
+      }
     ]
   },
   {
@@ -59,9 +245,38 @@
     "dsaLevel": "low",
     "summary": "Build products on top of language models: RAG, agents and APIs. New field, project-led hiring.",
     "skills": [
-      { "id": "python", "weight": 2 }, { "id": "javascript", "weight": 1 }, { "id": "llm", "weight": 4 },
-      { "id": "rest-api", "weight": 2 }, { "id": "sql", "weight": 1 }, { "id": "docker", "weight": 1 },
-      { "id": "ml", "weight": 1 }, { "id": "git", "weight": 1 }
+      {
+        "id": "python",
+        "weight": 2
+      },
+      {
+        "id": "javascript",
+        "weight": 1
+      },
+      {
+        "id": "llm",
+        "weight": 4
+      },
+      {
+        "id": "rest-api",
+        "weight": 2
+      },
+      {
+        "id": "sql",
+        "weight": 1
+      },
+      {
+        "id": "docker",
+        "weight": 1
+      },
+      {
+        "id": "ml",
+        "weight": 1
+      },
+      {
+        "id": "git",
+        "weight": 1
+      }
     ]
   },
   {
@@ -70,8 +285,34 @@
     "dsaLevel": "low",
     "summary": "Help customers get software working: debug, explain and integrate. Good for people who like talking and fixing.",
     "skills": [
-      { "id": "debugging", "weight": 3 }, { "id": "sql", "weight": 2 }, { "id": "rest-api", "weight": 2 },
-      { "id": "linux", "weight": 1 }, { "id": "docs", "weight": 3 }, { "id": "javascript", "weight": 1 }, { "id": "python", "weight": 1 }
+      {
+        "id": "debugging",
+        "weight": 3
+      },
+      {
+        "id": "sql",
+        "weight": 2
+      },
+      {
+        "id": "rest-api",
+        "weight": 2
+      },
+      {
+        "id": "linux",
+        "weight": 1
+      },
+      {
+        "id": "docs",
+        "weight": 3
+      },
+      {
+        "id": "javascript",
+        "weight": 1
+      },
+      {
+        "id": "python",
+        "weight": 1
+      }
     ]
   },
   {
@@ -80,8 +321,74 @@
     "dsaLevel": "high",
     "summary": "Big product companies. Several rounds of data structures and algorithms. Included so you can compare honestly.",
     "skills": [
-      { "id": "dsa", "weight": 5 }, { "id": "cpp", "weight": 2 }, { "id": "java", "weight": 2 },
-      { "id": "python", "weight": 1 }, { "id": "sql", "weight": 1 }, { "id": "git", "weight": 1 }
+      {
+        "id": "dsa",
+        "weight": 5
+      },
+      {
+        "id": "cpp",
+        "weight": 2
+      },
+      {
+        "id": "java",
+        "weight": 2
+      },
+      {
+        "id": "python",
+        "weight": 1
+      },
+      {
+        "id": "sql",
+        "weight": 1
+      },
+      {
+        "id": "git",
+        "weight": 1
+      },
+      {
+        "id": "rust",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "id": "mobile",
+    "name": "Mobile App Developer",
+    "dsaLevel": "medium",
+    "summary": "Build apps people carry in their pocket with React Native, Flutter or native tools. Hiring is project-led, with moderate DSA.",
+    "skills": [
+      {
+        "id": "mobile",
+        "weight": 4
+      },
+      {
+        "id": "javascript",
+        "weight": 2
+      },
+      {
+        "id": "react",
+        "weight": 2
+      },
+      {
+        "id": "typescript",
+        "weight": 1
+      },
+      {
+        "id": "rest-api",
+        "weight": 2
+      },
+      {
+        "id": "firebase",
+        "weight": 2
+      },
+      {
+        "id": "git",
+        "weight": 1
+      },
+      {
+        "id": "testing",
+        "weight": 1
+      }
     ]
   }
 ]

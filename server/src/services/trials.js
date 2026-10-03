@@ -1,35 +1,44 @@
-import { z } from 'zod';
-
-export const gradeSchema = z.object({
-  score: z.number().min(0).max(100),
-  feedback: z.string(),
-  strengths: z.array(z.string()).max(5),
-  improvements: z.array(z.string()).max(5),
-});
+import { badRequest } from '../errors.js';
 
 /**
- * Grades a taste-test answer against the task's rubric.
- * The student's answer is untrusted text: the prompt tells the model to treat it as data only.
+ * Checks the answers sent for a taste test: one option index per question, in order.
+ * Anything that is not a real option for that question is a client error.
  */
-export async function gradeTrial({ llm, task, answer }) {
-  const answerIndex = parseInt(answer, 10);
-  const selectedText = task.options[answerIndex];
-  const isCorrect = answerIndex === task.correctOptionIndex;
+export function parseAnswers(task, answers) {
+  if (!Array.isArray(answers) || answers.length !== task.questions.length) {
+    throw badRequest(`Answer all ${task.questions.length} questions`);
+  }
+  return answers.map((answer, i) => {
+    const text = String(answer).trim();
+    if (!/^\d+$/.test(text)) throw badRequest(`Pick one of the options for question ${i + 1}`);
+    const index = Number(text);
+    if (index >= task.questions[i].options.length) throw badRequest(`Question ${i + 1} has no such option`);
+    return index;
+  });
+}
 
-  const system = [
-    'You grade a multiple-choice practice task for a final-year college student. Be encouraging and educational.',
-    'The student has selected an answer. The correct answer and explanation are provided.',
-    'If they chose the correct answer, score 100. If incorrect, score 0. Do not give partial credit.',
-    'Reply as JSON: {"score": number, "feedback": "2-3 sentences explaining the correct concept", "strengths": ["..."], "improvements": ["..."]}',
-  ].join('\n');
-  const user = [
-    `Task: ${task.title}`,
-    `Brief: ${task.brief}`,
-    `Student selected: ${selectedText}`,
-    `Correct Answer: ${task.options[task.correctOptionIndex]}`,
-    `Explanation: ${task.explanation}`
-  ].join('\n\n');
-
-  const graded = await llm.completeJson({ system, user, schema: gradeSchema });
-  return { ...graded, score: Math.round(graded.score) };
+/**
+ * Grades a multiple-choice taste test. Comparing numbers does not need a model, so this is
+ * instant, free, never rate limited, and always gives the same result.
+ * The score is the share of questions answered correctly. The hand-written explanations
+ * (and the right answers) are returned only now, after the student has answered.
+ */
+export function gradeTrial({ task, answers }) {
+  const chosen = parseAnswers(task, answers);
+  const review = task.questions.map((question, i) => ({
+    question: question.brief,
+    chosen: question.options[chosen[i]],
+    correctOption: question.options[question.correctOptionIndex],
+    isCorrect: chosen[i] === question.correctOptionIndex,
+    explanation: question.explanation,
+  }));
+  const right = review.filter((r) => r.isCorrect).length;
+  const total = review.length;
+  return {
+    score: Math.round((right / total) * 100),
+    feedback: right === total ? `Perfect: ${right} of ${total} correct.` : `You got ${right} of ${total} correct. Read the explanations below.`,
+    right,
+    total,
+    review,
+  };
 }

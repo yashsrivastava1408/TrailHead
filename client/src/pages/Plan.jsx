@@ -71,7 +71,7 @@ export default function Plan() {
       {error && <Banner tone="error" title="Something went wrong">{error}</Banner>}
       {session.planSource === 'fallback' && <Banner title="Template plan">The AI model could not write a plan{session.planNote ? ` (${session.planNote})` : ''}, so this one was built from a template.</Banner>}
 
-      <Card className="row" style={{ gap: 28 }}>
+      <Card className="row reveal" style={{ gap: 28, background: 'rgba(20, 27, 38, 0.45)', borderColor: 'rgba(52, 211, 153, 0.2)' }}>
         <Ring value={percent} size={92} stroke={8} />
         <div>
           <h2>{plan.progress.done} of {plan.progress.total} days complete</h2>

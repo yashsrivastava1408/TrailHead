@@ -82,7 +82,10 @@ export const Banner = ({ tone = 'warn', title, children }) => (
 );
 
 export const Spinner = ({ label }) => (
-  <span className="row small muted"><Loader2 size={16} className="spin" /> {label}</span>
+  <span className="row small" style={{ color: 'var(--accent)', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
+    <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 12px 2px var(--accent)', animation: 'pulse 1.5s ease-in-out infinite' }} />
+    {label}
+  </span>
 );
 
 /** Placeholder block shown while content loads. */

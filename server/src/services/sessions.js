@@ -36,8 +36,14 @@ export function createSessionService({ repo, analyzeGraph, llm }) {
     if (!getPath(pathId)) throw notFound('Path');
     const offered = session.analysis.ranking.slice(0, TOP_N).map((r) => r.pathId);
     if (!offered.includes(pathId)) throw badRequest('Taste tests are offered for your top paths only');
-    const { rubric, ...task } = getTask(pathId);
-    return task;
+    // The answer key stays on the server until the student has answered.
+    const task = getTask(pathId);
+    return {
+      pathId: task.pathId,
+      title: task.title,
+      minutes: task.minutes,
+      questions: task.questions.map(({ brief, starter, options }) => ({ brief, starter, options })),
+    };
   }
 
   return {
@@ -51,10 +57,10 @@ export function createSessionService({ repo, analyzeGraph, llm }) {
 
     taskFor,
 
-    async submitTrial(id, { pathId, answer, enjoyment }) {
+    async submitTrial(id, { pathId, answers, enjoyment }) {
       taskFor(id, pathId); // validates the path is offered
-      const graded = await gradeTrial({ llm, task: getTask(pathId), answer });
-      repo.saveTrial({ sessionId: id, pathId, answer, score: graded.score, enjoyment, feedback: graded });
+      const graded = gradeTrial({ task: getTask(pathId), answers });
+      repo.saveTrial({ sessionId: id, pathId, answer: JSON.stringify(answers), score: graded.score, enjoyment, feedback: graded });
       return view(id);
     },
 
