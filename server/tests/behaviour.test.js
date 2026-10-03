@@ -182,3 +182,29 @@ test('the plan prompt carries the student\'s own stack and tells the model to bu
   assert.ok(JSON.parse(seen.user).knownSkills.includes('JavaScript'));
   assert.match(seen.system, /Build on the student's own stack/);
 });
+
+test('behind a proxy each visitor gets their own rate limit (X-Forwarded-For is trusted once)', async () => {
+  const t = await startTestServer({ llm: happyLlm() });
+  try {
+    const post = (ip) => fetch(`${t.base}/sessions`, { method: 'POST', headers: { 'content-type': 'application/json', 'x-forwarded-for': ip }, body: '{}' });
+    let last;
+    for (let i = 0; i < 22; i += 1) last = await post('203.0.113.7');
+    assert.equal(last.status, 429, 'the noisy visitor is limited');
+    assert.notEqual((await post('198.51.100.9')).status, 429, 'a different visitor is not');
+  } finally {
+    await t.close();
+  }
+});
+
+test('the security headers still allow GitHub profile pictures but nothing else external', async () => {
+  const t = await startTestServer({ llm: happyLlm() });
+  try {
+    const csp = (await fetch(`${t.base}/health`)).headers.get('content-security-policy');
+    assert.match(csp, /img-src 'self' data: https:\/\/github\.com https:\/\/avatars\.githubusercontent\.com/);
+    assert.match(csp, /default-src 'self'/);
+    assert.match(csp, /script-src 'self'/, 'scripts are still same-origin only');
+    assert.doesNotMatch(csp, /script-src[^;]*unsafe-eval/);
+  } finally {
+    await t.close();
+  }
+});

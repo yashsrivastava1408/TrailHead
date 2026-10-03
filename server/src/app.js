@@ -22,7 +22,18 @@ export function createApp({ db, github, llm, corsOrigin }) {
 
   const app = express();
   app.disable('x-powered-by');
-  app.use(helmet());
+  // On Render (and most hosts) the app sits behind one proxy. Trust it, so the per-visitor
+  // rate limit sees each visitor's real address instead of the proxy's.
+  app.set('trust proxy', 1);
+  app.use(helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        // GitHub profile pictures (github.com/<user>.png redirects to avatars.githubusercontent.com)
+        'img-src': ["'self'", 'data:', 'https://github.com', 'https://avatars.githubusercontent.com'],
+      },
+    },
+  }));
   app.use(cors({ origin: corsOrigin }));
   app.use(express.json({ limit: '100kb' }));
 
